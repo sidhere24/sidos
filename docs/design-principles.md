@@ -343,11 +343,11 @@ audio jack detect, suspend battery drain measurement.
 
 ## 9. Roadmap sketch
 
-- **Phase 0 (now):** design principles (this doc), name, brand, repo scaffolding
-- **Phase 1:** base decision (bootc vs classic), build system, CI image builds
-- **Phase 2:** minimal bootable image → Calamares installer → first ISO
-- **Phase 3:** power stack tuning on reference hardware; publish benchmarks
-- **Phase 4:** desktop polish pass (HIG, gestures, snap layouts)
+- **Phase 0 (now):** design principles (this doc), name, brand, repo scaffolding — DONE
+- **Phase 1:** base decision (bootc vs classic), build system, CI image builds — DONE
+- **Phase 2:** minimal bootable image → Calamares installer → first ISO — DONE (CI smoke-test gate wired; sddm in Containerfile; calamares in manifest; install-media on main push)
+- **Phase 3:** power stack tuning on reference hardware (Framework 13 + ThinkPad); publish benchmarks (P1 battery life ≥10% better than Fedora; P2 instant wake; P7 driver codec validation) — IN PROGRESS
+- **Phase 4:** desktop polish pass (HIG, gestures, snap layouts across Classic/Studio/Flow profiles); P6 macOS-grade polish invariant — PENDING
 - **Phase 5:** public alpha → feedback loop → beta
 
 ## 10. Open questions
