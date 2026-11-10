@@ -6,7 +6,7 @@ labels: bug
 
 **What happened?** (what you expected vs what occurred)
 
-**Environment**: profile (Classic/Studio/Flow), hardware (laptop model), LaptopOS build (once releases exist)
+**Environment**: profile (Classic/Studio/Flow), hardware (laptop model), SiD OS build (once releases exist)
 
 **Reproduction steps**:
 

@@ -1,4 +1,4 @@
-# Contributing to LaptopOS
+# Contributing to SiD OS
 
 Thanks for caring about laptops. This project is docs-first: the design docs in
 `docs/` are the source of truth — read `docs/design-principles.md` (especially the
@@ -27,7 +27,7 @@ That certifies the patch is yours to contribute under our license. There is no C
 
 ## AI-assisted contributions — the kernel-style stance
 
-LaptopOS follows the Linux community norm (see `docs/design-principles.md` §2.8):
+SiD OS follows the Linux community norm (see `docs/design-principles.md` §2.8):
 
 - **AI tools are welcome as tools.** We do not require an `Assisted-by:` tag and we
   do not ban AI-generated code.

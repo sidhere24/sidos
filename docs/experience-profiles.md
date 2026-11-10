@@ -1,4 +1,4 @@
-# LaptopOS — Experience Profiles ("One flip of a button")
+# SiD OS — Experience Profiles ("One flip of a button")
 
 > Status: draft v0.1
 > Depends on: `design-principles.md`
@@ -8,7 +8,7 @@
 
 Users don't want a Linux distro. They want *an* experience they already trust:
 Windows' familiarity, macOS's polish, or the Linux power-user setup. Instead of
-picking one and disappointing two camps, LaptopOS ships **three curated experience
+picking one and disappointing two camps, SiD OS ships **three curated experience
 profiles on top of one desktop**, switchable with a single toggle — like switching
 a phone's theme, but the *entire* interaction paradigm flips with it.
 

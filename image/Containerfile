@@ -1,15 +1,19 @@
-# SKELETON — not a working build. Pending decision D1 (bootc vs classic Fedora).
-# When confirmed: base moves to quay.io/fedora/fedora-bootc:<ver> and this grows.
-FROM fedora:42
+# SiD OS bootc image — skeleton. Builds, but is NOT a working OS yet.
+# D1 (2026-11): Fedora Atomic (bootc) base confirmed.
+# Phase 1: CI builds this per PR; boot smoke test comes with the first real ISO.
 
-LABEL org.opencontainers.image.title="laptopos"
-LABEL org.opencontainers.image.description="LaptopOS bootc image (skeleton)"
+ARG BASE=quay.io/fedora/fedora-bootc:latest
+FROM ${BASE}
+
+LABEL org.opencontainers.image.title="sidos"
+LABEL org.opencontainers.image.description="SiD OS — laptop-first Linux distribution (bootc skeleton)"
+LABEL org.opencontainers.image.source="https://github.com/sidos/sidos"
 LABEL org.opencontainers.image.licenses="MIT"
 
 # --- Plasma 6 + Wayland session (P6) ---
 # RUN dnf -y install @kde-desktop-environment plasma-workspace-wayland
 
-# --- Power stack (P1/P2): final TLP vs power-profiles-daemon pick lands in Phase 3 ---
+# --- Power stack (P1/P2) — final TLP vs power-profiles-daemon pick lands Phase 3 ---
 # RUN dnf -y install power-profiles-daemon   # or: tlp tlp-rdw
 
 # --- Firmware updates in GUI (P7) ---
@@ -18,9 +22,5 @@ LABEL org.opencontainers.image.licenses="MIT"
 # --- Media codecs (P7): RPM Fusion Free/NonFree ---
 # RUN dnf -y install rpmfusion-free-release rpmfusion-nonfree-release
 
-# --- Classic experience profile (default) — the look-and-feel package lands with the
-#     packaging/ tree once profile implementation starts (see docs/profile-classic.md) ---
-# COPY packaging/experience-profiles/classic /usr/share/laptopos/profiles/classic
-
-# swappable later: bootc lint / ostree container config
-CMD ["/bin/bash"]
+# --- Containerfile + ostree config sanity (bootc requires this) ---
+RUN bootc container lint

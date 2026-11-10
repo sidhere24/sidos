@@ -26,12 +26,12 @@ jobs:
         run: sh scripts/check-trademarks.sh
 
   image-build:
-    name: Build image (disabled until D1 base decision)
-    # Base decision pending (design-principles.md §10.1 / D1).
-    # Enable when bootc vs classic Fedora is confirmed.
-    if: false
+    name: Build bootc image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build image
-        run: podman build -t laptopos image/
+      - name: Install podman
+        run: sudo apt-get update && sudo apt-get install -y podman
+      - name: Build image (skeleton)
+        run: podman build -t sidos image/
+

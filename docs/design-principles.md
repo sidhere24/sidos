@@ -1,6 +1,6 @@
-# LaptopOS — Distro Design Principles
+# SiD OS — Distro Design Principles
 
-> Status: draft v0.2 · working title "LaptopOS" · laptop-first Linux distribution
+> Status: draft v0.3 · name: **SiD OS** · laptop-first Linux distribution
 > Audience: maintainers, contributors, and future-us
 
 ---
@@ -145,7 +145,7 @@ indexers, minimal autostart), not heroics. See P8.
 - Torvalds (Jan 2026): no AI-slop branch of docs; "just a tool" stance; by Jul 2026:
   pro-AI foot-down — any anti-AI objection can fork or walk away
 
-**Implications for LaptopOS (P10):**
+**Implications for SiD OS (P10):**
 - CONTRIBUTING will **not ban AI** (kernel norm) — but requires the author to state
   their *understanding* of the patch; CI runs static analysis + automated review
 - Expect AI-generated drive-by PRs; templates must demand test evidence & motivation
@@ -196,16 +196,11 @@ solves the Linux "update terror" problem. The dislikes are all fixable in a dist
 bundle drivers/codecs, ship great power defaults, configure the desktop properly.
 
 ### 3.4 Recommendation
-**Primary direction: Fedora Atomic (bootc/rpm-ostree-style image-based) base.**
+**Decision (2026-11, D1): Fedora Atomic (bootc/rpm-ostree-style image-based) base.**
 - Read-only `/usr` + atomic upgrades + instant rollback → updates can't brick a laptop
 - SteamOS (read-only, atomic) is the existence proof that this UX wins normal users
 - Fedora's power-management defaults + our tuning = best battery experience
 - dnf/rpm + Flatpak for apps → one blessed path, no package-manager roulette
-
-*Open decision:* classic Fedora fork vs bootc image. bootc is more aligned with the
-"updates never break the system" principle; classic is more traditional/contributor-
-friendly. Decide before Phase 2 scaffolding. Fallback: Arch-based if we want maximum
-freshness and are willing to own the guardrails.
 
 ---
 
@@ -317,7 +312,7 @@ nothing here may make them feel like a second-class citizen.
 
 ### 6.1 The "steal Windows users" playbook (and still love Mac/Linux users)
 - Default install = **Classic** profile, zero prompts to "choose a DE" — installing
-  LaptopOS must feel like reinstalling Windows minus the 3 years of accumulated regret
+  SiD OS must feel like reinstalling Windows minus the 3 years of accumulated regret
 - Onboarding asks: "Where do you come from?" (Windows / Mac / Linux / other) and
   pre-selects the matching profile — one click, still reversible anytime
 - **Familiarity is the feature** for Classic; **polish is the feature** for Studio;
@@ -357,11 +352,12 @@ audio jack detect, suspend battery drain measurement.
 
 ## 10. Open questions
 
-1. bootc/atomic vs classic Fedora base? (leans: bootc)
+1. ~~bootc/atomic vs classic Fedora base?~~ **Decided: bootc (2026-11, D1).**
 2. ~~KDE Plasma vs GNOME~~ **Decided: KDE Plasma, with three one-button Experience
    Profiles (Classic/Studio/Flow)** — see `docs/experience-profiles.md`. Remaining:
-   profile names, exact visual assets, and whether to ship a later Community GNOME Spin.
-3. Project name, logo, domain
+   exact visual assets, and whether to ship a later Community GNOME Spin.
+3. ~~Project name~~ **Decided: SiD OS (2026-11, D17).** Remaining: logo, domain,
+   trademark/domain check before public launch.
 4. CoC choice (Contributor Covenant) and communication channels (Matrix/Discord/forum)
 5. Release cadence: 6-month with atomic upgrades, vs fixed point releases
 
@@ -373,7 +369,7 @@ Single source of truth for the big calls. Change = RFC + principle check.
 
 | # | Decision | Choice | Rationale / evidence |
 |---|---|---|---|
-| D1 | **Base distro** | **Fedora Atomic (bootc)** — *pending final confirmation of bootc vs classic* | Best laptop power defaults out of the box; atomic read-only root + rollback kills update terror (SteamOS proof); near-current packages with Debian-grade stability (§3) |
+| D1 | **Base distro** | **Fedora Atomic (bootc) — CONFIRMED 2026-11** | Best laptop power defaults out of the box; atomic read-only root + rollback kills update terror (SteamOS proof); near-current packages with Debian-grade stability (§3) |
 | D2 | **Desktop environment** | **KDE Plasma 6 (heavily curated, KDE alignment for power + familiarity)** | Built-in tiling + window rules (P6), best battery anecdotes on Ryzen laptops, configures the Windows-refugee paradigm without extensions (§3, §2.7, profile docs) |
 | D3 | **Three Experience Profiles, one button** | **Classic (default, Windows-refugee) / Studio (macOS-flavored) / Flow (Linux-power)** | One desktop, three paradigms; switch in ~2 s, transactional, rollback-safe; Plasma Look-and-Feel packages + `laptop-experiences` CLI; a11y parity required (`docs/experience-profiles.md`) |
 | D4 | **Default browser** | **Firefox** | No Edge/Chrome default; independent engine; best privacy posture; ad-blocker friendly; part of P4 zero-upsell |
@@ -386,9 +382,11 @@ Single source of truth for the big calls. Change = RFC + principle check.
 | D11 | **Privacy** | **Zero telemetry/ads/upsells; one master privacy switch; offline-first** | P4; the #1 reason Win11 users hate their OS (§2.2); distinguishing marketing claim ("honest for once") |
 | D12 | **Licensing & governance** | **MIT/CC-BY-SA docs+tooling; DCO (no CLA); benevolent lead + RFC; public repo day one** | P10; contributor-first; lowers barrier; matches laptop-open positioning |
 | D13 | **Reference hardware** | **Framework 13 (primary) + 2017 ThinkPad/XPS (P8 proof) + future ARM** | LVFS/fwupd-friendly; community darling; CI in QEMU + hardware lab |
-| D14 | **Project layout** | **`LaptopOS/` next to other workspaces; docs-first; design → decision → code** | This repo |
+| D14 | **Project layout** | **`SiD OS/` next to other workspaces; docs-first; design → decision → code** | This repo |
 | D15 | **Kernel/AI stance** | **No AI-bans in contributions; author must show understanding; CI automated review; track stable kernel promptly (7.4 LTS expected)** | §2.8; matches kernel community norm; shields maintainers from slop (P10) |
 | D16 | **Anti-goals** | No gaming-first features; no server/cloud profiles; no "most customizable" contest; no macOS app compat promises | §5 |
+| D17 | **Project name** | **SiD OS** (confirmed 2026-11); internal codename | see `docs/naming-and-trademarks.md` §6 — check domain/trademark before public launch; association with Debian Sid noted |
+| D18 | **Image architecture** | **bootc image, `quay.io/fedora/fedora-bootc` base, GitHub Actions build + QEMU smoke test** | D1; P3 rollback-safe updates; Phase 1 |
 
 *Everything in this table has a home elsewhere in the docs — this is the index, not the detail.*
 

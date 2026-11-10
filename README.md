@@ -1,10 +1,10 @@
-# LaptopOS (working title)
+# SiD OS
 
 An open-source Linux distribution designed **laptop-first**: instant sleep/resume,
 best-in-class battery life, atomic updates with automatic rollback, and a polished,
 ad-free, telemetry-free experience — free, and friendly to contributors.
 
-- Status: pre-alpha, design phase
+- Status: pre-alpha, Phase 1 (bootc image skeleton)
 - License (tooling/docs): TBD — see `docs/design-principles.md`
 - Docs: [`docs/design-principles.md`](docs/design-principles.md) · [`docs/experience-profiles.md`](docs/experience-profiles.md) · [`docs/profile-classic.md`](docs/profile-classic.md) · [`docs/naming-and-trademarks.md`](docs/naming-and-trademarks.md)
 - Strategy: **default to the experience Windows users know, deliver the values Mac and
@@ -26,7 +26,7 @@ or user control.
 
 ```
 docs/                 design principles, experience profiles, profile specs, naming policy
-image/                bootc image skeleton (disabled until D1 base decision)
+image/                bootc image (fedora-bootc skeleton; not bootable yet)
 scripts/              repo gates (trademark scan, etc.)
 .github/              CI, issue/PR templates
 ```

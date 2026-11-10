@@ -1,6 +1,6 @@
 # Security Policy
 
-LaptopOS is pre-alpha. There are no releases yet and no supported versions.
+SiD OS is pre-alpha. There are no releases yet and no supported versions.
 
 ## Reporting a vulnerability
 

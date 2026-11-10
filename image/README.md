@@ -1,17 +1,21 @@
-# Image build (bootc, pending decision D1)
+# SiD OS image (bootc)
 
-> **Do not build/ship from this directory yet.** The bootc vs classic Fedora base
-> decision (design-principles.md §10 question 1, decision D1) is not final.
+> Status: bootc base confirmed (D1, 2026-11). This builds in CI as a skeleton;
+> it is not a working OS yet.
 
-Plan once decided:
+What this will become:
 
-- Base: Fedora Atomic-style image (bootc) — read-only `/usr`, atomic upgrades,
-  rollback on failed boot (P3)
-- SRPM/tooling: rpm-ostree/bootc, fedora-bootc base image
-- Contents: curated Plasma 6 session, our configs, Flatpak remotes preconfigured,
-  Classic experience profile default, power stack (TLP *or* ppd — Phase 3 benchmark)
-- Update channel: stable + testing; kernel stable tracked promptly (7.4 expected LTS)
-- CI: build image per PR, boot smoke-test in QEMU, rollback test, then (hardware lab)
-  Framework 13 + 2017 ThinkPad runs (P10, P7, P8)
+- Base: `quay.io/fedora/fedora-bootc:latest` (pin a digest before first public
+  tag for reproducibility — track Fedora releases deliberately, not blindly)
+- Read-only `/usr`, atomic upgrades, automatic rollback on failed boot (P3)
+- Contents (Phase 2): curated Plasma 6 session, Classic experience profile as
+  default, Flatpak remotes preconfigured, power stack tuned (TLP *or* ppd —
+  Phase 3 benchmarks on Framework 13), fwupd, RPM Fusion codecs, Firefox
+- CI: per-PR image build; then QEMU smoke test (boot, suspend, update, rollback);
+  then hardware runs (Framework 13 + 2017 ThinkPad)
 
-`Containerfile` in this directory is a **skeleton, not a working build**.
+Build locally (once podman + network are available):
+
+```
+podman build -t sidos image/
+```
