@@ -1,5 +1,7 @@
 # SiD OS
 
+[![CI](https://github.com/sidhere24/sidos/actions/workflows/ci.yml/badge.svg)](https://github.com/sidhere24/sidos/actions/workflows/ci.yml)
+[![Discussions](https://img.shields.io/github/discussions/sidhere24/sidos)](https://github.com/sidhere24/sidos/discussions)
 An open-source Linux distribution designed **laptop-first**: instant sleep/resume,
 best-in-class battery life, atomic updates with automatic rollback, and a polished,
 ad-free, telemetry-free experience — free, and friendly to contributors.

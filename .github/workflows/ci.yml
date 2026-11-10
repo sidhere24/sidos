@@ -35,3 +35,23 @@ jobs:
       - name: Build image (skeleton)
         run: podman build -t sidos image/
 
+  image-publish:
+    name: Publish to ghcr.io (main only)
+    needs: image-build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install podman
+        run: sudo apt-get update && sudo apt-get install -y podman
+      - name: Log in to ghcr.io
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u "${{ github.actor }}" --password-stdin
+      - name: Build & push image
+        run: |
+          podman build -t ghcr.io/${{ github.repository_owner }}/sidos:latest -t ghcr.io/${{ github.repository_owner }}/sidos:${{ github.sha }} image/
+          podman push ghcr.io/${{ github.repository_owner }}/sidos:latest
+          podman push ghcr.io/${{ github.repository_owner }}/sidos:${{ github.sha }}
+
