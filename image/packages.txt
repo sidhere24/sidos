@@ -5,6 +5,7 @@
 # Session & desktop environment
 @kde-desktop-environment
 plasma-workspace-wayland
+sddm
 dolphin
 konsole
 kate
