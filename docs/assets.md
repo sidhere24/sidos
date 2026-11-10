@@ -1,55 +1,66 @@
-# Assets — open-licensed themes & artwork (researched 2026-11)
+# Assets — the best free themes, wallpapers & sounds (researched 2026-11)
 
-> All items are open-licensed. Licenses re-checked at bundle time (naming-and-trademarks.md §5).
+> Goal: the finest free/open assets on the web, chosen deliberately. All licenses
+> re-verified at bundle time (naming-and-trademarks.md §5).
 > "Like" = visual influence; never bundled competitor files.
 
 ## GTK / Qt theming per profile
-| Profile | GTK theme | License | Notes |
+| Profile | Theme | Where | License |
 |---|---|---|---|
-| Classic | **Fluent-gtk-theme** (vinceliuice) — Light, accent #4B8AC4 | GPL | Fluent-design-styled; Light+Dark; GTK3/GTK4/libadwaita(ish); actively maintained |
-| Studio | **WhiteSur-gtk-theme** (vinceliuice) — macOS-BigSur-inspired | GPL | Full port incl. window decorations; use Light for default Studio |
-| Flow | **Catppuccin (Frappe/Mocha)** for GTK + Kvantum | MIT palette / GPL forks | Dark, high-contrast friendly; pairs with JetBrains Mono |
+| Classic | **Fluent-gtk-theme** (vinceliuice) Light, accent ours | github.com/vinceliuice/Fluent-gtk-theme | GPL-3.0 |
+| Studio | **WhiteSur-gtk-theme** (vinceliuice) — macOS-BigSur-inspired | github.com/vinceliuice/whitesur-gtk-theme | GPL-3.0 |
+| Flow | **Catppuccin** (Mocha) GTK + Kvantum | github.com/catppuccin/catppuccin · catppuccin/kde · catppuccin/kvantum | MIT palette / GPL forks (verify per repo) |
+| All (Extras) | **Layan** (modern flat) | store.kde.org · AUR `layan-*` | GPL-3.0 / CC-BY-SA (verify) |
+| All (Extras) | **Arc / Nordic** (high-contrast alternates) | store.kde.org | GPL / CC-BY-SA |
 
-Qt side: all three driven through **Kvantum** (LGPLv3) with matching upstream
-Kvantum configs (Fluent and WhiteSur ship Kvantum variants; Catppuccin has Kvantum
-ports). Breeze remains fallback for any unstyled widget.
+Qt side: every profile driven through **Kvantum** (LGPLv3) with upstream Kvantum
+configs; Breeze fallback for any unstyled widget.
 
 ## Icons
-| Profile | Theme | License |
+| Profile | Icons | License |
 |---|---|---|
-| Classic | **Papirus-Light** + recolored accent | GPL-3.0 |
-| Studio | **Papirus-Light (soft)** or **WhiteSur icon theme** | GPL-3.0 |
+| Classic | **Papirus-Light** (+ recolored accent) | GPL-3.0 |
+| Studio | **Papirus-Light (soft)** / **WhiteSur icon theme** | GPL-3.0 |
 | Flow | **Papirus-Dark** (high density) | GPL-3.0 |
+| All (Extras) | **Layan-icon-theme** | CC-BY-SA / GPL (verify) |
 
-Papirus ships with cp/fossplanet-compatible recolors; we ship pre-bundled accent
-variants so users never recolor.
+Pre-bundled accent variants ship in-image so users never recolor.
 
 ## Cursors
-- **KDE Breeze cursors** (LGPL-3.0) — all profiles, default
-- **Bibata-Modern** (vinceliuice, GPL-family) — optional re-skins (light/dark),
-  verify license line at bundle time
+- **KDE Breeze** (LGPL-3.0) — default, all profiles
+- **Bibata-Modern** (Light/Ice/Amber/Classic) (GPL-family) — optional
+- **Layan cursors** — alternate (GPL / CC-BY-SA, verify)
+
+## Notification & event sounds
+- **sound-theme-freedesktop** (CC BY-SA 3.0) — spec-compliant default; full event
+  set; ships everywhere, freedesktop notification-sound spec compatible
+- **KDE Ocean** sounds — Studio/Classic default feel; clean, no fanfare (verify license line)
+- Community sets, user-installed via Settings → Notifications/Sound from store.kde.org:
+  **Wood**, **Maple**, other top-rated sets — we link to them, we never re-license or
+  bundle them; the user's sound theme choice stays theirs
+- No startup fanfare by default; Classic/Studio subtle; Flow near-silent
+
+## Wallpapers — bundle web finds, not only generated art
+1. **NASA public-domain imagery** (public domain) — Earth/Landsat/Blue Marble —
+   ideal deep-blue Classic backdrop. https://www.nasa.gov/multimedia/imagegallery
+2. **Wikimedia Commons CC0 / CC-BY** — 2 per theme; verify each file's license line;
+   keep attribution in `/usr/share/doc/sidos-wallpapers/ATTRIBUTION`
+3. **GNOME / KDE official backgrounds** (CC BY-SA 3.0) — gorgeous; bundle with attribution
+4. Our generated CC0 set (`brand/wallpapers/`) stays as placeholders/fallback;
+   final picks get screenshot-diffed into CI before release
 
 ## Fonts (OFL-1.1)
-Noto Sans (UI), Inter (Studio display), JetBrains Mono (Flow/terminals).
+Noto Sans (Classic/Studio UI), Inter (Studio display), JetBrains Mono (Flow/mono),
+CaskaydiaCove (user opt-in).
 
-## Sounds
-freedesktop sound theme components (CC BY-SA 3.0) — nudge, notify, login chime;
-attributed in /usr/share/licenses. No startup fanfare by default.
+## Theme freedom (the differentiator vs. macOS's "Apple knows best")
+Every theme above is user-installable in one click from Settings → Appearance.
+See `docs/customization.md`.
 
-## Wallpapers (original, Phase 2 deliverable)
-- Classic — calm blue gradient ridge, generated/commissioned CC0 (`brand/wallpapers/`)
-- Studio — soft neutral horizon (`brand/wallpapers/`)
-- Flow — near-black with single green accent line (`brand/wallpapers/`)
-
-## Logo / brand
-Hand-built SVG mark (`brand/logo.svg`) — original, ours, no influence claims.
-Plymouth boot theme + Calamares theme = Phase 2 (art once approved by project).
-
-## Explicitly rejected (all three profiles)
-SF Symbols, SF Pro, Segoe UI/Icons, Aptos/Fluent icons as files, WhiteSur *files*
-used unchanged as "Apple assets" (they're GPL artwork — fine to bundle with
-attribution, never rebranded as Apple's), generated "looks exactly like macOS" art.
+## Explicitly rejected (all profiles)
+SF Symbols, SF Pro, Segoe UI/Icons, Aptos/Fluent *files* as proprietary art,
+any asset without a clear license line, AI "lookalike" of Apple/Microsoft art.
 
 ## Attribution file
-`/usr/share/licenses/sidos-assets/` must list every bundled theme/icon/font with
-name, upstream URL, license, and modification note (recolors count as modifications).
+`/usr/share/licenses/sidos-assets/` lists every bundled theme/icon/font with name,
+upstream URL, license, and modification note (recolors count as modifications).

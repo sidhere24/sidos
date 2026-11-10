@@ -22,8 +22,9 @@ at all; if a boot fails, the previous image is used automatically. Worst case: o
 reboot, not one afternoon.
 
 **Q: When can I download an ISO?**
-A: Not yet — the project is pre-alpha (Phase 1). Watch this repo; first bootable
-images land in Phase 2. We publish honest progress, not vaporware timelines.
+A: Not yet — the project is pre-alpha (Phase 2 skeleton: the design docs and the
+image build exist; no bootable ISO yet). Watch this repo; first bootable images
+land soon. We publish honest progress, not vaporware timelines.
 
 **Q: Which apps can I install?**
 A: Everything on Flathub via the built-in store, plus native RPM packages for system
