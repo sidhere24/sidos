@@ -38,5 +38,7 @@ truth. DCO sign-off, no CLA. AI tools welcome, understanding mandatory.
 
 ## Status & how to try
 
-Pre-alpha, Phase 0. There is no ISO yet — nothing to install. Watch this repo;
-first bootable images land with Phase 2. Progress is tracked in the design docs.
+Pre-alpha, Phase 2 skeleton. There is no ISO yet — nothing to install. The full
+design is written (principles, three experience profiles, onboarding, assets,
+FAQ, naming policy). The image build is scaffolded and runs in CI. Watch this
+repo; first bootable images land with Phase 2 completion.
