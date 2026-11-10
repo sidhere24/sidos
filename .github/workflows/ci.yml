@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docs-and-policy:
+    name: Docs & policy gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Required docs present
+        run: |
+          test -f README.md
+          test -f LICENSE
+          test -f CONTRIBUTING.md
+          test -f docs/design-principles.md
+          test -f docs/experience-profiles.md
+          test -f docs/naming-and-trademarks.md
+          test -f docs/profile-classic.md
+
+      - name: Trademark scan (shippable trees)
+        run: sh scripts/check-trademarks.sh
+
+  image-build:
+    name: Build image (disabled until D1 base decision)
+    # Base decision pending (design-principles.md §10.1 / D1).
+    # Enable when bootc vs classic Fedora is confirmed.
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: podman build -t laptopos image/

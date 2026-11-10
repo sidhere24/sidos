@@ -1,0 +1,26 @@
+# SKELETON — not a working build. Pending decision D1 (bootc vs classic Fedora).
+# When confirmed: base moves to quay.io/fedora/fedora-bootc:<ver> and this grows.
+FROM fedora:42
+
+LABEL org.opencontainers.image.title="laptopos"
+LABEL org.opencontainers.image.description="LaptopOS bootc image (skeleton)"
+LABEL org.opencontainers.image.licenses="MIT"
+
+# --- Plasma 6 + Wayland session (P6) ---
+# RUN dnf -y install @kde-desktop-environment plasma-workspace-wayland
+
+# --- Power stack (P1/P2): final TLP vs power-profiles-daemon pick lands in Phase 3 ---
+# RUN dnf -y install power-profiles-daemon   # or: tlp tlp-rdw
+
+# --- Firmware updates in GUI (P7) ---
+# RUN dnf -y install fwupd
+
+# --- Media codecs (P7): RPM Fusion Free/NonFree ---
+# RUN dnf -y install rpmfusion-free-release rpmfusion-nonfree-release
+
+# --- Classic experience profile (default) — the look-and-feel package lands with the
+#     packaging/ tree once profile implementation starts (see docs/profile-classic.md) ---
+# COPY packaging/experience-profiles/classic /usr/share/laptopos/profiles/classic
+
+# swappable later: bootc lint / ostree container config
+CMD ["/bin/bash"]
