@@ -1,7 +1,9 @@
 # SiD OS image (bootc)
 
-> Status: bootc base confirmed (D1, 2026-11). This builds in CI as a skeleton;
-> it is not a working OS yet.
+> Status: Phase 2 in progress. Bootc base confirmed (D1, 2026-11). CI builds this
+> image on every PR and smoke-tests it in QEMU (`qemu-smoke-test` job, boot to
+> graphical login, artifacts archived). Not yet a ship-ready installable image;
+> the Calamares installer and first tested ISO land with Phase 2 completion.
 
 What this will become:
 

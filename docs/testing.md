@@ -6,9 +6,9 @@
 ## What CI already guarantees
 - bootc image builds (`bootc container lint` passes)
 - Required docs present; trademark scan of shippable trees
+- Image boots to a graphical login in QEMU (`.github/workflows/ci.yml` `qemu-smoke-test` job; screenshots + serial log archived as artifacts)
 
 ## What CI does NOT yet check (this doc exists for that)
-- The image actually boots to a graphical login
 - Sessions start (Plasma Wayland, theme applied)
 - Update flow and automatic rollback
 - Idle RAM, netstat telemetry sweep

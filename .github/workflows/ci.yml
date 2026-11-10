@@ -92,4 +92,39 @@ jobs:
             /var/tmp/bootc-out/bootiso/disk.iso#sidos-phase2.iso \
             /var/tmp/bootc-out/qcow2/disk.qcow2#sidos-phase2.qcow2
 
+  qemu-smoke-test:
+    name: QEMU smoke test — boot to graphical login
+    needs: image-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tooling
+        run: |
+          sudo apt-get update && sudo apt-get install -y podman qemu-system-x86 python3-pillow
+      - name: Build bootc image
+        run: podman build -t localhost/sidos:ci image/
+      - name: Build bootable qcow2 (bootc-image-builder)
+        run: |
+          sudo podman run --rm --privileged --pull=newer \
+            --security-opt label=type:unconfined_t \
+            -v /var/tmp/bootc-out:/output \
+            quay.io/centos-bootc/bootc-image-builder:latest \
+            build --type qcow2 --rootfs btrfs localhost/sidos:ci
+          sudo chown -R $USER:$USER /var/tmp/bootc-out
+      - name: Run VM smoke test
+        run: |
+          python scripts/vm_gui_test.py \
+            --disk /var/tmp/bootc-out/qcow2/disk.qcow2 \
+            --out shots --count 6 --interval 8 --accel tcg --memory 4096 --smp 2
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qemu-smoke-test-artifacts
+          path: |
+            shots/*.png
+            shots/serial.log
+          retention-days: 7
+
 

@@ -30,6 +30,9 @@ libreoffice-writer
 libreoffice-calc
 libreoffice-impress
 
+# Installer (Phase 2: Calamares, D7 OOBE)
+calamares
+
 # Power user utilities (Flow profile defaults)
 btop
 htop

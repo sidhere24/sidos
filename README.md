@@ -6,7 +6,7 @@ An open-source Linux distribution designed **laptop-first**: instant sleep/resum
 best-in-class battery life, atomic updates with automatic rollback, and a polished,
 ad-free, telemetry-free experience — free, and friendly to contributors.
 
-- Status: pre-alpha, Phase 2 skeleton (bootc image + docs complete)
+- Status: pre-alpha, Phase 2 in progress (bootc image + docs complete; CI smoke-tests boot to graphical login per PR; Calamares installer + first tested ISO remaining)
 - License (tooling/docs): MIT/CC-BY-SA — see `LICENSE`, `docs/LICENSE.md`
 - Docs: [`design-principles.md`](docs/design-principles.md) · [`experience-profiles.md`](docs/experience-profiles.md) · [`profile-classic.md`](docs/profile-classic.md) · [`profile-studio.md`](docs/profile-studio.md) · [`profile-flow.md`](docs/profile-flow.md) · [`assets.md`](docs/assets.md) · [`customization.md`](docs/customization.md) · [`onboarding.md`](docs/onboarding.md) · [`faq.md`](docs/faq.md) · [`rfcs/0000-rfc-template.md`](docs/rfcs/0000-rfc-template.md) · [`naming-and-trademarks.md`](docs/naming-and-trademarks.md)
 - Strategy: **default to the experience Windows users know, deliver the values Mac and
