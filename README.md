@@ -12,6 +12,21 @@ ad-free, telemetry-free experience — free, and friendly to contributors.
 - Strategy: **default to the experience Windows users know, deliver the values Mac and
   Linux users love, exterminate everything they hate.** See below.
 
+## A taste of SiD OS
+
+Three one-button **Experience Profiles** on one desktop (Plasma 6). Switch anytime in
+Settings → Experience or with `laptop-experiences switch <name>`. These are concept
+renders pending the first VM screenshots — the visual direction, not the final pixels.
+
+| Classic (default, Windows-refugee familiar) | Studio (calm, Mac-refugee) | Flow (tiling, Linux-native) |
+|---|---|---|
+| ![Classic profile concept](brand/screenshots/classic-concept.png) | ![Studio profile concept](brand/screenshots/studio-concept.png) | ![Flow profile concept](brand/screenshots/flow-concept.png) |
+| Familiar taskbar + Start-style App Grid, snap layouts & window groups | Dock + top menu bar, gesture-first, global menu | Tiling by default, mono fonts, keyboard-first |
+
+Full specs: [`profile-classic.md`](docs/profile-classic.md) ·
+[`profile-studio.md`](docs/profile-studio.md) ·
+[`profile-flow.md`](docs/profile-flow.md)
+
 ## What it is
 
 A Linux distribution — not a kernel and not a desktop widget collection. The goal is
@@ -27,7 +42,7 @@ or user control.
 ## Repository map
 
 ```
-brand/                logo (SVG) + original CC0 wallpapers
+brand/                logo (SVG) + original CC0 wallpapers + profile concept renders
 docs/                 design principles, experience profiles, profile specs, naming policy
 image/                bootc image skeleton + Phase 2 package manifest
 scripts/              repo gates (trademark scan, etc.)

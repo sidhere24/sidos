@@ -1,7 +1,7 @@
 # Brand assets license — CC0
 
-Everything original in `brand/` (logo, wallpapers) is dedicated to the public
-domain under **CC0 1.0** (https://creativecommons.org/publicdomain/zero/1.0/).
+Everything original in `brand/` (logo, wallpapers, concept screenshots) is dedicated to
+the public domain under **CC0 1.0** (https://creativecommons.org/publicdomain/zero/1.0/).
 Use it, remix it, no attribution required (a credit is appreciated).
 
 The name "SiD OS" and the logo as a product mark are asserted marks before public
