@@ -25,6 +25,7 @@ or user control.
 ## Repository map
 
 ```
+brand/                logo (SVG) + original CC0 wallpapers
 docs/                 design principles, experience profiles, profile specs, naming policy
 image/                bootc image skeleton + Phase 2 package manifest
 scripts/              repo gates (trademark scan, etc.)
