@@ -25,8 +25,9 @@ RUN set -eu; \
     dnf clean all; \
     rm -rf /tmp/packages.txt
 
-# Reach a graphical login screen (bootc images default to multi-user.target otherwise)
-RUN systemctl set-default graphical.target && systemctl enable sddm.service
+# Reach a graphical login screen (bootc images default to multi-user.target).
+# F45 KDE already enables plasma-login-manager as display-manager.service — do not enable sddm.
+RUN systemctl set-default graphical.target
 
 
 # Power stack: power-profiles-daemon is installed via packages.txt;
