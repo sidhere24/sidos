@@ -25,6 +25,10 @@ RUN set -eu; \
     dnf clean all; \
     rm -rf /tmp/packages.txt
 
+# Reach a graphical login screen (bootc images default to multi-user.target otherwise)
+RUN systemctl set-default graphical.target && systemctl enable sddm.service
+
+
 # Power stack: power-profiles-daemon is installed via packages.txt;
 # TLP evaluation lands in Phase 3 benchmarks (P1).
 

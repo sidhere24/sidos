@@ -22,9 +22,10 @@ at all; if a boot fails, the previous image is used automatically. Worst case: o
 reboot, not one afternoon.
 
 **Q: When can I download an ISO?**
-A: Not yet — the project is pre-alpha (Phase 2 skeleton: the design docs and the
-image build exist; no bootable ISO yet). Watch this repo; first bootable images
-land soon. We publish honest progress, not vaporware timelines.
+A: Two paths exist today: `sudo bootc switch --apply ghcr.io/sidhere24/sidos:latest`
+from any Fedora Atomic system (immediate, free, rollback-safe), or a VM for testing.
+The installable ISO arrives with Phase 2 completion — watch Releases and Discussions.
+Honest progress, not vaporware timelines.
 
 **Q: Which apps can I install?**
 A: Everything on Flathub via the built-in store, plus native RPM packages for system

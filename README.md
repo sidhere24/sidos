@@ -41,18 +41,37 @@ truth. DCO sign-off, no CLA. AI tools welcome, understanding mandatory.
 
 ## Status & how to try
 
-Pre-alpha, Phase 2 skeleton. **There is no usable ISO yet** — the image builds and
-publishes, but doesn't boot into a working session yet.
+Pre-alpha, Phase 2. **There is no installable ISO yet** — the image builds, passes
+`bootc container lint`, and publishes to ghcr.io on every push. What follows is the
+honest state + the install paths that exist.
 
-The image pipeline works end-to-end (build → `bootc container lint` → publish):
+## Download & Install (early adopters)
 
+### Option A — `bootc switch` from an existing Fedora Atomic system (works today, free)
+On a machine running **Fedora Atomic Kinoite/Silverblue/KDE Plasma Desktop Atomic**:
+
+```bash
+sudo bootc switch --apply ghcr.io/sidhere24/sidos:latest
+# reboot; if anything fails, boot the previous deployment from the GRUB menu — it just works (rollback is automatic)
 ```
-podman pull ghcr.io/sidhere24/sidos:latest
-```
 
-(Booting it gets you nothing useful yet — Plasma is installed but the session,
-installer and defaults aren't wired. First genuinely bootable build lands with the
-Phase 2 completion.)
+This replaces the OS image with SiD OS atomically; your `/home` and data are kept.
+Best path for developers and testers who can reinstall Fedora quickly.
+
+### Option B — Test in a VM (no commitment)
+Needs any x86_64 hypervisor (virt-manager/GNOME Boxes on Linux, QEMU on Windows,
+Hyper-V, VirtualBox):
+
+```powershell
+winget install SoftwareFreedomConservancy.QEMU
+qemu-img create -f qcow2 sidos-test.qcow2 32G
+```
+Once the ISO/qcow2 lands on Releases (Phase 2 completion), grab it there.
+
+### Option C — Installable ISO (coming first)
+ISO + USB flash instructions (balenaEtcher/Rufus) will be added to Releases when the
+session and installer work is finished. Watch
+[Releases](https://github.com/sidhere24/sidos/releases) or the Discussions forum.
 
 ## Community
 
