@@ -26,6 +26,7 @@ rpmfusion-nonfree-release
 
 # System apps only (third-party GUI apps ship as Flatpak, D5)
 firefox
+chromium
 thunderbird
 libreoffice-writer
 libreoffice-calc

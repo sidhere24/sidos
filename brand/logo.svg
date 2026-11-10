@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SiD OS logo">
+  <title>SiD OS</title>
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="#12151C"/>
+  <path d="M112 328c36 30 76 44 118 44 84 0 148-42 148-104 0-150-252-78-252-136 0-24 22-38 56-38 38 0 72 12 100 34"
+        fill="none" stroke="#4B8AC4" stroke-width="44" stroke-linecap="round"/>
+  <circle cx="416" cy="96" r="26" fill="#3DA639"/>
+</svg>

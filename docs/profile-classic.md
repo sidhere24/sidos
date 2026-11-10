@@ -78,7 +78,7 @@ and none of the reasons they left Windows 11 are anywhere in sight.
 
 | Role | App | Windows parallel |
 |---|---|---|
-| Browser | Firefox (ESR-ish current) + uBlock preinstalled? (default: Firefox clean; user asks) | Edge → Firefox |
+| Browser | Firefox (default) + Chromium preinstalled — both clean, no upsells | Edge → Firefox |
 | Files | Dolphin | File Explorer |
 | Terminal | Konsole (hidden for novices; reachable) | Windows Terminal |
 

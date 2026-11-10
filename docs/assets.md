@@ -1,51 +1,55 @@
-# Assets shortlist — open-licensed, no trade dress copied
+# Assets — open-licensed themes & artwork (researched 2026-11)
 
-> Status: v0.1 · All items verified at bundle time; licenses re-checked before each
-> release (naming-and-trademarks.md §5). "Like" = visual influence only, never files.
+> All items are open-licensed. Licenses re-checked at bundle time (naming-and-trademarks.md §5).
+> "Like" = visual influence; never bundled competitor files.
 
-## Icon themes
-| Profile | Candidate | License | Notes |
+## GTK / Qt theming per profile
+| Profile | GTK theme | License | Notes |
 |---|---|---|---|
-| Classic | **Papirus-Light** (re-skinned accent to our blue) | GPL-3.0 | Largest coverage; original art, no competitor files |
-| Studio | **Papirus-Light** soft neutral variant / **KDE Breeze Icons** | GPLv3 / LGPL-3.0 | Breeze is native to Plasma — best consistency |
-| Flow | **Papirus-Dark** high-contrast | GPL-3.0 | Dark density, zero ambiguity at small sizes |
+| Classic | **Fluent-gtk-theme** (vinceliuice) — Light, accent #4B8AC4 | GPL | Fluent-design-styled; Light+Dark; GTK3/GTK4/libadwaita(ish); actively maintained |
+| Studio | **WhiteSur-gtk-theme** (vinceliuice) — macOS-BigSur-inspired | GPL | Full port incl. window decorations; use Light for default Studio |
+| Flow | **Catppuccin (Frappe/Mocha)** for GTK + Kvantum | MIT palette / GPL forks | Dark, high-contrast friendly; pairs with JetBrains Mono |
 
-All shipped as re-colored *derivatives* with proper license+attribution in
-`/usr/share/licenses/sidos-icons/`.
+Qt side: all three driven through **Kvantum** (LGPLv3) with matching upstream
+Kvantum configs (Fluent and WhiteSur ship Kvantum variants; Catppuccin has Kvantum
+ports). Breeze remains fallback for any unstyled widget.
+
+## Icons
+| Profile | Theme | License |
+|---|---|---|
+| Classic | **Papirus-Light** + recolored accent | GPL-3.0 |
+| Studio | **Papirus-Light (soft)** or **WhiteSur icon theme** | GPL-3.0 |
+| Flow | **Papirus-Dark** (high density) | GPL-3.0 |
+
+Papirus ships with cp/fossplanet-compatible recolors; we ship pre-bundled accent
+variants so users never recolor.
 
 ## Cursors
-KDE Breeze cursors (LGPL-3.0) with two re-skins (light Classic, dark Flow) — stock,
-no custom artwork needed for Phase 2.
+- **KDE Breeze cursors** (LGPL-3.0) — all profiles, default
+- **Bibata-Modern** (vinceliuice, GPL-family) — optional re-skins (light/dark),
+  verify license line at bundle time
 
-## Fonts (all OFL-1.1)
-| Role | Font | Profile |
-|---|---|---|
-| UI text | **Noto Sans** | Classic / Studio |
-| UI display | **Inter** | Studio headings |
-| UI mono | **JetBrains Mono** (OFL) | Flow default, all profiles' terminals |
-| Docs/code | JetBrains Mono | repo |
-
-## Wallpapers
-One original per release — commissioned CC0 works (geometric gradients, terrain
-silhouettes). No stock photo-of-photography risks. Store sources in `brand/`.
+## Fonts (OFL-1.1)
+Noto Sans (UI), Inter (Studio display), JetBrains Mono (Flow/terminals).
 
 ## Sounds
-freedesktop sound theme components (CC BY-SA 3.0) — nudge, notify, login chime —
-re-embedded with attribution. No startup fanfare by default.
+freedesktop sound theme components (CC BY-SA 3.0) — nudge, notify, login chime;
+attributed in /usr/share/licenses. No startup fanfare by default.
 
-## GTK/Kvantum bridge assets
-Kvantum (LGPLv3) configs shipped to theme Qt+GTK apps uniformly per profile —
-config files are ours (MIT), engine is theirs.
+## Wallpapers (original, Phase 2 deliverable)
+- Classic — calm blue gradient ridge, generated/commissioned CC0 (`brand/wallpapers/`)
+- Studio — soft neutral horizon (`brand/wallpapers/`)
+- Flow — near-black with single green accent line (`brand/wallpapers/`)
 
-## Explicitly rejected
-SF Symbols / SF Pro / Segoe UI / Segoe Icons / Aptos Fluent icons — **never** bundled.
-Papirus is re-skinned, not traced, from any competitor asset. If a contributor
-wants to "make it look more like X," the answer is: make it look like *our* thing,
-better.
+## Logo / brand
+Hand-built SVG mark (`brand/logo.svg`) — original, ours, no influence claims.
+Plymouth boot theme + Calamares theme = Phase 2 (art once approved by project).
 
-## Brand assets to create (open items, need designer or commission budget)
-- Logo (mark + wordmark) for "SiD OS"
-- 3 default wallpapers (Classic/Studio/Flow)
-- Boot/splash artwork (Plymouth theme)
-- Installer artwork (Calamares theme)
-- Icon set accent color QA pass
+## Explicitly rejected (all three profiles)
+SF Symbols, SF Pro, Segoe UI/Icons, Aptos/Fluent icons as files, WhiteSur *files*
+used unchanged as "Apple assets" (they're GPL artwork — fine to bundle with
+attribution, never rebranded as Apple's), generated "looks exactly like macOS" art.
+
+## Attribution file
+`/usr/share/licenses/sidos-assets/` must list every bundled theme/icon/font with
+name, upstream URL, license, and modification note (recolors count as modifications).

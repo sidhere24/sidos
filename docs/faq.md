@@ -42,9 +42,18 @@ as bugs; we take hardware matrix seriously (see docs/design-principles.md P7).
 A: Settings → Experience → pick one. It applies in ~2 seconds, no logout, and rolls
 back automatically if anything goes wrong.
 
-**Q: Why is the default Firefox?**
-A: Independent engine, no bundled store/upsell, best privacy posture of the mainstream
-browsers. Chrome/Chromium/Edge run fine as Flatpaks if you want them.
+**Q: Which browsers ship?**
+A: Firefox is the default (independent engine, no upsells, best privacy posture).
+Chromium is preinstalled for anything that breaks on Firefox. Brave and other
+Chromium forks are one click away in the store.
+
+**Q: Where is the community forum?**
+A: GitHub Discussions on the project repo — free, searchable, always available,
+no separate account beyond GitHub. (Matrix/Discord may come later if growth demands.)
+
+**Q: How are bug fixes shipped?**
+A: Rolling release with atomic images: found it, fix it, publish. No waiting for a
+release train — your system pulls the fix like any other update.
 
 **Q: Is SiD OS free?**
 A: Yes. Free as in freedom (MIT/CC-BY-SA content; packages keep upstream licenses)

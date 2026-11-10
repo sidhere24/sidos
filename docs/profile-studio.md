@@ -67,7 +67,7 @@ fast, calm, gesture-driven — minus the walled garden and the paid "fix the OS"
 
 | Role | App | Mac parallel (descriptive only) |
 |---|---|---|
-| Browser | Firefox (clean) | Default browser |
+| Browser | Firefox (default) + Chromium | Default browser |
 | Files | Dolphin | Finder |
 | Terminal | Konsole (visible option) | Terminal |
 | Office suite | LibreOffice or OnlyOffice | iWork |

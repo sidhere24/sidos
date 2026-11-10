@@ -358,8 +358,11 @@ audio jack detect, suspend battery drain measurement.
    exact visual assets, and whether to ship a later Community GNOME Spin.
 3. ~~Project name~~ **Decided: SiD OS (2026-11, D17).** Remaining: logo, domain,
    trademark/domain check before public launch.
-4. CoC choice (Contributor Covenant) and communication channels (Matrix/Discord/forum)
-5. Release cadence: 6-month with atomic upgrades, vs fixed point releases
+4. ~~CoC / communication channels~~ Deferred to launch time (channel: forum-style via
+   GitHub Discussions, see D19). CoC: Contributor Covenant (shipped).
+5. ~~Release cadence~~ **Decided: rolling release with atomic upgrades — fix forward.**
+   If a bug is found, we patch and publish an updated image (no waiting for a
+   release train). Matches bootc; mirrors user intent ("fix and send an update"). See D20.
 
 ---
 
@@ -372,7 +375,7 @@ Single source of truth for the big calls. Change = RFC + principle check.
 | D1 | **Base distro** | **Fedora Atomic (bootc) — CONFIRMED 2026-11** | Best laptop power defaults out of the box; atomic read-only root + rollback kills update terror (SteamOS proof); near-current packages with Debian-grade stability (§3) |
 | D2 | **Desktop environment** | **KDE Plasma 6 (heavily curated, KDE alignment for power + familiarity)** | Built-in tiling + window rules (P6), best battery anecdotes on Ryzen laptops, configures the Windows-refugee paradigm without extensions (§3, §2.7, profile docs) |
 | D3 | **Three Experience Profiles, one button** | **Classic (default, Windows-refugee) / Studio (macOS-flavored) / Flow (Linux-power)** | One desktop, three paradigms; switch in ~2 s, transactional, rollback-safe; Plasma Look-and-Feel packages + `laptop-experiences` CLI; a11y parity required (`docs/experience-profiles.md`) |
-| D4 | **Default browser** | **Firefox** | No Edge/Chrome default; independent engine; best privacy posture; ad-blocker friendly; part of P4 zero-upsell |
+| D4 | **Default browser** | **Firefox (default) + Chromium preinstalled** | Independent engine default, no upsells; Chromium covers the long tail of Firefox breakage out of the box; Brave/other Chromium forks one click away in the store |
 | D5 | **App distribution** | **Flatpak (Flathub) for third-party GUI apps; rpm/dnf for system/native** | One blessed path (P5); sandboxed; no package-manager roulette; Steam/Proton available but not chased (non-goals) |
 | D6 | **Update model** | **Atomic image updates + automatic rollback on failed boot; battery-aware scheduling** | P3 non-negotiable; never on <20% battery; never mid-call; user chooses timing (Classic OOBE) |
 | D7 | **OOBE / onboarding** | **"Where do you come from?" wizard (Windows/Mac/Linux) → preselect profile; no account required; privacy OFF by default** | Windows-refugee primary goal (§6.1); ≤90 s to desktop; zero nag screens |
@@ -387,6 +390,8 @@ Single source of truth for the big calls. Change = RFC + principle check.
 | D16 | **Anti-goals** | No gaming-first features; no server/cloud profiles; no "most customizable" contest; no macOS app compat promises | §5 |
 | D17 | **Project name** | **SiD OS** (confirmed 2026-11); internal codename | see `docs/naming-and-trademarks.md` §6 — check domain/trademark before public launch; association with Debian Sid noted |
 | D18 | **Image architecture** | **bootc image, `quay.io/fedora/fedora-bootc` base, GitHub Actions build + QEMU smoke test** | D1; P3 rollback-safe updates; Phase 1 |
+| D19 | **Community forum** | **GitHub Discussions on the repo** (free, no hosting burden for a budget-tight project) | User asked for forum-like discussion without own domain; Discussions ships free with public repos; Matrix later if growth demands it |
+| D20 | **Release cadence** | **Rolling — fix forward** (atomic image, patch-and-publish on bugs/features; no fixed release train) | Matches bootc + user intent; "found a bug → fixed → ships in next image" |
 
 *Everything in this table has a home elsewhere in the docs — this is the index, not the detail.*
 

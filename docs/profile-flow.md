@@ -53,7 +53,7 @@ kernel — but also nothing between you and safety: rollback is still one reboot
 
 | Role | App | Notes |
 |---|---|---|
-| Browser | Firefox (clean) | Proton runs Steam natively (available, opt-in) |
+| Browser | Firefox (default) + Chromium | Proton runs Steam natively (available, opt-in) |
 | Files | Dolphin | Full toolbar, splits |
 | Terminal | Konsole | zsh default? (no — bash; zsh snap-in via Settings → Shell) |
 | Editor | Kate | Preconfigured sane defaults; LSP ready |
