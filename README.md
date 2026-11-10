@@ -41,10 +41,18 @@ truth. DCO sign-off, no CLA. AI tools welcome, understanding mandatory.
 
 ## Status & how to try
 
-Pre-alpha, Phase 2 skeleton. There is no ISO yet — nothing to install. The full
-design is written (principles, three experience profiles, onboarding, assets,
-FAQ, naming policy). The image build is scaffolded and runs in CI. Watch this
-repo; first bootable images land with Phase 2 completion.
+Pre-alpha, Phase 2 skeleton. **There is no usable ISO yet** — the image builds and
+publishes, but doesn't boot into a working session yet.
+
+The image pipeline works end-to-end (build → `bootc container lint` → publish):
+
+```
+podman pull ghcr.io/sidhere24/sidos:latest
+```
+
+(Booting it gets you nothing useful yet — Plasma is installed but the session,
+installer and defaults aren't wired. First genuinely bootable build lands with the
+Phase 2 completion.)
 
 ## Community
 
