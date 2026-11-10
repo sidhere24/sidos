@@ -119,6 +119,9 @@ jobs:
           python scripts/vm_gui_test.py \
             --disk /var/tmp/bootc-out/qcow2/disk.qcow2 \
             --out shots --count 6 --interval 8 --accel tcg --memory 4096 --smp 2
+          # TODO: Phase 4 — add profile visual distinctness lint (Classic/Studio/Flow
+          #       screenshot analysis to verify UI differences are preserved across
+          #       Plasma updates and profile switches).
       - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v4
