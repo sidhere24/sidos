@@ -33,6 +33,7 @@ Full spec: [`profile-classic.md`](profile-classic.md).
 
 ### 2.2 "Studio" — macOS-like
 For Mac refugees. Polish and calm are the features.
+Full spec: [`profile-studio.md`](profile-studio.md).
 - Floating bottom dock (Window Button/Icons-Only Task Manager), top menu/panel with app name + clock + tray
 - Global-menu approximation: KDE's Appmenu widget in the top panel (menu bar per app)
 - Finder-style file manager: column/gallery view defaults, quick-look previews, path bar visible
@@ -43,6 +44,7 @@ For Mac refugees. Polish and calm are the features.
 
 ### 2.3 "Flow" — Linux-native / power
 For enthusiasts and devs. Speed and control are the features.
+Full spec: [`profile-flow.md`](profile-flow.md).
 - Tiling-first: KWin tiling layouts + optional `niri`/`Hyprland`-style layouts (KWin 6 tiling covers most)
 - Minimal panels, keyboard launcher front and center (KRunner / fuzzel)
 - Monospace presets, dense information display, power-user defaults (full Dolphin toolbar, terminal integration)

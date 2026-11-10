@@ -1,0 +1,44 @@
+# Phase 2 package plan (Fedora / bootc image)
+# Not built yet — package manifest for the first real image.
+# Group names verified against Fedora repos at image build time.
+
+# Session & desktop environment
+@kde-desktop-environment
+plasma-workspace-wayland
+dolphin
+konsole
+kate
+spectacle
+okular
+gwenview
+
+# Core laptop stack (P1/P2)
+power-profiles-daemon   # final PPD-vs-TLP decision lands in Phase 3 benchmarks
+upower
+rfkill
+
+# Firmware updates in GUI (P7)
+fwupd
+
+# Media codecs via RPM Fusion (P7)
+rpmfusion-free-release
+rpmfusion-nonfree-release
+
+# System apps only (third-party GUI apps ship as Flatpak, D5)
+firefox
+thunderbird
+libreoffice-writer
+libreoffice-calc
+libreoffice-impress
+
+# Power user utilities (Flow profile defaults)
+btop
+htop
+git
+delta
+lazygit
+podman
+flatpak
+
+# Theme engine for Qt/GTK bridging (P6)
+kvantum
