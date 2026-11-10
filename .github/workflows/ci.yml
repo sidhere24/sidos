@@ -58,7 +58,9 @@ jobs:
 
   install-media:
     name: Build ISO + qcow2 (manual)
-    if: github.event_name == 'workflow_dispatch'
+    if: |
+      github.ref == 'refs/heads/main' && github.event_name == 'push'
+      || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write

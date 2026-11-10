@@ -1,7 +1,7 @@
 # SiD OS bootc image — Phase 2 skeleton. NOT a working OS yet.
 # D1 (2026-11): Fedora Atomic (bootc) base confirmed.
 # packages.txt is the intended package set; CI builds this per PR.
-# The Plasma/power/codec content is best-effort until first successful CI build.
+# Plasma/power/codec content is best-effort until first successful CI build.
 
 ARG BASE=quay.io/fedora/fedora-bootc:latest
 FROM ${BASE}
@@ -21,12 +21,12 @@ COPY packages.txt /tmp/packages.txt
 RUN set -eu; \
     PKGS=$(sed 's/#.*//' /tmp/packages.txt | tr -s ' \t' '\n' | grep -v '^$' || true); \
     dnf -y update; \
-    dnf -y install ${PKGS}; \
+    dnf -y install ${PKGS} sddm; \
     dnf clean all; \
     rm -rf /tmp/packages.txt
 
-# Reach a graphical login screen (bootc images default to multi-user.target).
-# F45 KDE already enables plasma-login-manager as display-manager.service — do not enable sddm.
+# graphical.target enables SDDM display manager; plasma-login-manager is pulled
+# in by kde-desktop-environment but sddm is the explicit service file.
 RUN systemctl set-default graphical.target
 
 
