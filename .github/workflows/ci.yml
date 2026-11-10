@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   docs-and-policy:
@@ -54,4 +55,39 @@ jobs:
           podman build -t ghcr.io/${{ github.repository_owner }}/sidos:latest -t ghcr.io/${{ github.repository_owner }}/sidos:${{ github.sha }} image/
           podman push ghcr.io/${{ github.repository_owner }}/sidos:latest
           podman push ghcr.io/${{ github.repository_owner }}/sidos:${{ github.sha }}
+
+  install-media:
+    name: Build ISO + qcow2 (manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install podman
+        run: sudo apt-get update && sudo apt-get install -y podman
+      - name: Build bootable ISO with bootc-image-builder
+        run: |
+          sudo podman run --rm --privileged --pull=newer \
+            --security-opt label=type:unconfined_t \
+            -v /var/tmp/bootc-out:/output \
+            quay.io/centos-bootc/bootc-image-builder:latest \
+            build --type iso --rootfs btrfs ghcr.io/${{ github.repository_owner }}/sidos:latest
+          sudo podman run --rm --privileged --pull=newer \
+            --security-opt label=type:unconfined_t \
+            -v /var/tmp/bootc-out:/output \
+            quay.io/centos-bootc/bootc-image-builder:latest \
+            build --type qcow2 --rootfs btrfs ghcr.io/${{ github.repository_owner }}/sidos:latest
+          sudo chown -R $USER:$USER /var/tmp/bootc-out
+      - name: Publish to Releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete release-v0.0.0-phase2 --yes || true
+          gh release create release-v0.0.0-phase2 --prerelease \
+            --title "SiD OS pre-alpha (Phase 2, untested)" \
+            --notes "Auto-built from main by CI. NOT TESTED — boot at your own risk. Answers at Discussions." \
+            /var/tmp/bootc-out/bootiso/disk.iso#sidos-phase2.iso \
+            /var/tmp/bootc-out/qcow2/disk.qcow2#sidos-phase2.qcow2
+
 
