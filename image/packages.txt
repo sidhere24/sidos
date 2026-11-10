@@ -20,9 +20,7 @@ rfkill
 # Firmware updates in GUI (P7)
 fwupd
 
-# Media codecs via RPM Fusion (P7)
-rpmfusion-free-release
-rpmfusion-nonfree-release
+# Media codec repos are added via RPM Fusion URLs in the Containerfile (not in Fedora repos)
 
 # System apps only (third-party GUI apps ship as Flatpak, D5)
 firefox
@@ -37,7 +35,6 @@ btop
 htop
 git
 delta
-lazygit
 podman
 flatpak
 

@@ -11,6 +11,11 @@ LABEL org.opencontainers.image.description="SiD OS — laptop-first Linux distri
 LABEL org.opencontainers.image.source="https://github.com/sidos/sidos"
 LABEL org.opencontainers.image.licenses="MIT"
 
+# RPM Fusion (P7) — codec repos installed from upstream URLs, not Fedora repos
+RUN dnf -y install \
+    "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
+    "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+
 # Install phase-2 packages (comments and blanks stripped).
 COPY packages.txt /tmp/packages.txt
 RUN set -eu; \
