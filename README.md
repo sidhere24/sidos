@@ -43,3 +43,9 @@ Pre-alpha, Phase 2 skeleton. There is no ISO yet — nothing to install. The ful
 design is written (principles, three experience profiles, onboarding, assets,
 FAQ, naming policy). The image build is scaffolded and runs in CI. Watch this
 repo; first bootable images land with Phase 2 completion.
+
+## Community
+
+GitHub Discussions: **https://github.com/sidhere24/sidos/discussions**
+— ask questions, share ideas, report hardware quirks. Bugs → Issues; security →
+`SECURITY.md`; conduct → Contributor Covenant.

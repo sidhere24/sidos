@@ -53,7 +53,8 @@ SiD OS follows the Linux community norm (see `docs/design-principles.md` §2.8):
 
 ## Community
 
-- Chat: Matrix/Discord (link TBD before public launch — see open question Q4)
+- Chat/forum: **GitHub Discussions** — https://github.com/sidhere24/sidos/discussions
+  (questions, ideas, hardware reports; no separate account beyond GitHub)
 - Conduct: `CODE_OF_CONDUCT.md` (Contributor Covenant v2.1)
 - Security issues: see `SECURITY.md`
 
