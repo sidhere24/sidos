@@ -76,11 +76,13 @@ jobs:
           sudo podman run --rm --privileged --pull=newer \
             --security-opt label=type:unconfined_t \
             -v /var/tmp/bootc-out:/output \
+            -v /var/lib/containers/storage:/var/lib/containers/storage \
             quay.io/centos-bootc/bootc-image-builder:latest \
             build --type iso --rootfs btrfs localhost/sidos:ci
           sudo podman run --rm --privileged --pull=newer \
             --security-opt label=type:unconfined_t \
             -v /var/tmp/bootc-out:/output \
+            -v /var/lib/containers/storage:/var/lib/containers/storage \
             quay.io/centos-bootc/bootc-image-builder:latest \
             build --type qcow2 --rootfs btrfs localhost/sidos:ci
           sudo chown -R $USER:$USER /var/tmp/bootc-out
@@ -106,13 +108,14 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y podman qemu-system-x86 python3-pillow
       - name: Build bootc image
-        run: podman build -t localhost/sidos:ci image/
+        run: sudo podman build -t localhost/sidos:ci image/
       - name: Build bootable qcow2 (bootc-image-builder)
         run: |
           sudo mkdir -p /var/tmp/bootc-out
           sudo podman run --rm --privileged --pull=newer \
             --security-opt label=type:unconfined_t \
             -v /var/tmp/bootc-out:/output \
+            -v /var/lib/containers/storage:/var/lib/containers/storage \
             quay.io/centos-bootc/bootc-image-builder:latest \
             build --type qcow2 --rootfs btrfs localhost/sidos:ci
           sudo chown -R $USER:$USER /var/tmp/bootc-out
