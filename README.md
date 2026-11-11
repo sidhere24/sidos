@@ -8,7 +8,7 @@ ad-free, telemetry-free experience — free, and friendly to contributors.
 
 - Status: pre-alpha, Phase 2 complete (CI smoke-tests boot+login, sddm in Containerfile, calamares in manifest, install-media on main push); Phase 3 in progress (power stack tuning on Framework 13 + ThinkPad; Phase 4 pending desktop polish pass HIG_gestures_snap).
 - License (tooling/docs): MIT/CC-BY-SA — see `LICENSE`, `docs/LICENSE.md`
-- Docs: [`design-principles.md`](docs/design-principles.md) · [`experience-profiles.md`](docs/experience-profiles.md) · [`profile-classic.md`](docs/profile-classic.md) · [`profile-studio.md`](docs/profile-studio.md) · [`profile-flow.md`](docs/profile-flow.md) · [`assets.md`](docs/assets.md) · [`customization.md`](docs/customization.md) · [`onboarding.md`](docs/onboarding.md) · [`faq.md`](docs/faq.md) · [`rfcs/0000-rfc-template.md`](docs/rfcs/0000-rfc-template.md) · [`naming-and-trademarks.md`](docs/naming-and-trademarks.md)
+- Docs: [`design-principles.md`](docs/design-principles.md) · [`experience-profiles.md`](docs/experience-profiles.md) · [`profile-classic.md`](docs/profile-classic.md) · [`profile-studio.md`](docs/profile-studio.md) · [`profile-flow.md`](docs/profile-flow.md) · [`assets.md`](docs/assets.md) · [`customization.md`](docs/customization.md) · [`download.md`](docs/download.md) · [`onboarding.md`](docs/onboarding.md) · [`faq.md`](docs/faq.md) · [`rfcs/0000-rfc-template.md`](docs/rfcs/0000-rfc-template.md) · [`naming-and-trademarks.md`](docs/naming-and-trademarks.md)
 - Strategy: **default to the experience Windows users know, deliver the values Mac and
   Linux users love, exterminate everything they hate.** See below.
 
@@ -62,31 +62,12 @@ honest state + the install paths that exist.
 
 ## Download & Install (early adopters)
 
-### Option A — `bootc switch` from an existing Fedora Atomic system (works today, free)
-On a machine running **Fedora Atomic Kinoite/Silverblue/KDE Plasma Desktop Atomic**:
+Full guide: [`docs/download.md`](docs/download.md)
 
-```bash
-sudo bootc switch --apply ghcr.io/sidhere24/sidos:latest
-# reboot; if anything fails, boot the previous deployment from the GRUB menu — it just works (rollback is automatic)
-```
-
-This replaces the OS image with SiD OS atomically; your `/home` and data are kept.
-Best path for developers and testers who can reinstall Fedora quickly.
-
-### Option B — Test in a VM (no commitment)
-Needs any x86_64 hypervisor (virt-manager/GNOME Boxes on Linux, QEMU on Windows,
-Hyper-V, VirtualBox):
-
-```powershell
-winget install SoftwareFreedomConservancy.QEMU
-qemu-img create -f qcow2 sidos-test.qcow2 32G
-```
-Once the ISO/qcow2 lands on Releases (Phase 2 completion), grab it there.
-
-### Option C — Installable ISO (coming first)
-ISO + USB flash instructions (balenaEtcher/Rufus) will be added to Releases when the
-session and installer work is finished. Watch
-[Releases](https://github.com/sidhere24/sidos/releases) or the Discussions forum.
+- **Option A** — `sudo bootc switch --apply ghcr.io/sidhere24/sidos:latest` from any
+  Fedora Atomic system. Works today.
+- **Option B** — test the qcow2 from Releases in a VM (QEMU/VirtualBox/virt-manager).
+- **Option C** — installable ISO arrives when the session is wired; watch Releases.
 
 ## Community
 

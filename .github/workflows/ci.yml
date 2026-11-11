@@ -72,6 +72,7 @@ jobs:
         run: sudo podman build -t localhost/sidos:ci image/
       - name: Build bootable ISO with bootc-image-builder
         run: |
+          sudo mkdir -p /var/tmp/bootc-out
           sudo podman run --rm --privileged --pull=newer \
             --security-opt label=type:unconfined_t \
             -v /var/tmp/bootc-out:/output \
@@ -90,12 +91,12 @@ jobs:
           gh release delete release-v0.0.0-phase2 --yes || true
           gh release create release-v0.0.0-phase2 --prerelease \
             --title "SiD OS pre-alpha (Phase 2, untested)" \
-            --notes "Auto-built from main by CI. NOT TESTED — boot at your own risk. Answers at Discussions." \
+            --notes "Auto-built from main by CI. NOT TESTED ΓÇö boot at your own risk. Answers at Discussions." \
             /var/tmp/bootc-out/bootiso/disk.iso#sidos-phase2.iso \
             /var/tmp/bootc-out/qcow2/disk.qcow2#sidos-phase2.qcow2
 
   qemu-smoke-test:
-    name: QEMU smoke test — boot to graphical login
+    name: QEMU smoke test ΓÇö boot to graphical login
     needs: image-build
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -108,6 +109,7 @@ jobs:
         run: podman build -t localhost/sidos:ci image/
       - name: Build bootable qcow2 (bootc-image-builder)
         run: |
+          sudo mkdir -p /var/tmp/bootc-out
           sudo podman run --rm --privileged --pull=newer \
             --security-opt label=type:unconfined_t \
             -v /var/tmp/bootc-out:/output \
@@ -119,7 +121,7 @@ jobs:
           python scripts/vm_gui_test.py \
             --disk /var/tmp/bootc-out/qcow2/disk.qcow2 \
             --out shots --count 6 --interval 8 --accel tcg --memory 4096 --smp 2
-          # TODO: Phase 4 — add profile visual distinctness lint (Classic/Studio/Flow
+          # TODO: Phase 4 ΓÇö add profile visual distinctness lint (Classic/Studio/Flow
           #       screenshot analysis to verify UI differences are preserved across
           #       Plasma updates and profile switches).
       - name: Upload test artifacts
