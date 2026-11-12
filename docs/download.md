@@ -22,7 +22,9 @@ Your `/home` and data are kept. Rollback is built in: hold Shift at the GRUB men
 (or set a boot timeout) and pick the previous deployment — no admin skills needed.
 
 ## Option B — Test in a VM
-1. Grab the qcow2 from Releases (or build your own: Actions → CI → "Build ISO + qcow2" → Run)
+1. The qcow2 built for the smoke test is 5.6 GB and exceeds GitHub's 2 GB Release asset
+   limit, so it is not published. If you want to try it, ask in Discussions and a
+   contributor can share a build. (Building your own: Actions → CI → "Build ISO + qcow2".)
 2. Linux (virt-manager): File → Import existing disk image
    macOS/Windows: install QEMU (`winget install SoftwareFreedomConservancy.QEMU`)
    ```
@@ -31,10 +33,15 @@ Your `/home` and data are kept. Rollback is built in: hold Shift at the GRUB men
    ```
 3. Boot → GRUB → Plasma login screen → poke around
 
-## Option C — Installable ISO (once the session is wired)
-1. Download `sidos-phase2.iso` from Releases
-2. Flash to USB with balenaEtcher (Win/Mac/Linux GUI) or `dd if=sidos-phase2.iso of=/dev/sdX bs=4M` (Linux)
-3. Boot USB → installer → done (needs 15 min + 32 GB)
+## Option C — Installable ISO (blocked, pending one Fedora host)
+The ISO build is blocked on this machine: F45 moved RPM repo configs to `/usr`
+(bootc relocatable repos), so the CentOS-based image-builder finds no repositories
+for the Anaconda installer. Two working paths forward:
+- A Fedora host once (any spare Fedora machine, or a Fedora container in WSL):
+  `dnf install image-builder`, then
+  `image-builder build --bootc-ref localhost/sidos:ci generic-iso`
+- The bootc-installer ISO flow per Fedora's official ISO generation guide
+Until then, Option A/B are the only download paths.
 
 ## Verification after install
 ```bash
