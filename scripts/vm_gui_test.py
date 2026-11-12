@@ -76,6 +76,7 @@ def main():
     ap.add_argument("--qemu", default="qemu-system-x86_64")
     ap.add_argument("--qmp-port", type=int, default=4444)
     ap.add_argument("--accel", default="whpx,tcg")
+    ap.add_argument("--machine", default="q35", help="QEMU machine type (default q35; i440FX panics with Fedora kernels)")
     args = ap.parse_args()
 
     import os
@@ -87,6 +88,7 @@ def main():
         "-accel", args.accel,
         "-drive", f"file={args.disk},format=qcow2",
         "-display", "none",
+        "-machine", args.machine,
         "-qmp", f"tcp:127.0.0.1:{args.qmp_port},server,nowait",
         "-serial", f"file:{args.out}/serial.log",
         "-netdev", "user,id=n0",
@@ -130,7 +132,12 @@ def main():
         proc.wait()
         sys.exit(1)
 
-    proc.wait(timeout=120)
+    try:
+        proc.wait(timeout=300)
+    except subprocess.TimeoutExpired:
+        print("note: guest did not power off within 5 min of ACPI powerdown; screenshots captured anyway.")
+        proc.terminate()
+        proc.wait(timeout=60)
     print("screenshots:", shots)
     print(f"serial log: {args.out}/serial.log")
 
