@@ -47,6 +47,8 @@ Until then, Option A/B are the only download paths.
 ```bash
 bootc status     # shows: ghcr.io/sidhere24/sidos:<sha>, booted, rollbacks
 cat /etc/os-release
+laptop-experiences list    # classic / studio / flow
+laptop-experiences switch flow   # dark, mono, high-contrast profile (applies instantly)
 ```
 
 ## Want to help?

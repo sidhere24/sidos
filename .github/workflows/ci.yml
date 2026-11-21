@@ -26,6 +26,9 @@ jobs:
       - name: Trademark scan (shippable trees)
         run: sh scripts/check-trademarks.sh
 
+      - name: Profile switcher syntax
+        run: bash -n packaging/experience-profiles/laptop-experiences
+
   image-build:
     name: Build bootc image
     runs-on: ubuntu-latest
@@ -34,7 +37,7 @@ jobs:
       - name: Install podman
         run: sudo apt-get update && sudo apt-get install -y podman
       - name: Build image (skeleton)
-        run: podman build -t sidos image/
+        run: podman build -f image/Containerfile -t sidos .
 
   image-publish:
     name: Publish to ghcr.io (main only)
@@ -52,7 +55,7 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u "${{ github.actor }}" --password-stdin
       - name: Build & push image
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner }}/sidos:latest -t ghcr.io/${{ github.repository_owner }}/sidos:${{ github.sha }} image/
+          podman build -f image/Containerfile -t ghcr.io/${{ github.repository_owner }}/sidos:latest -t ghcr.io/${{ github.repository_owner }}/sidos:${{ github.sha }} .
           podman push ghcr.io/${{ github.repository_owner }}/sidos:latest
           podman push ghcr.io/${{ github.repository_owner }}/sidos:${{ github.sha }}
 
@@ -70,7 +73,7 @@ jobs:
       - name: Install podman
         run: sudo apt-get update && sudo apt-get install -y podman
       - name: Build bootc image from this ref
-        run: sudo podman build -t localhost/sidos:ci image/
+        run: sudo podman build -f image/Containerfile -t localhost/sidos:ci .
       - name: Build bootable ISO with bootc-image-builder
         run: |
           sudo mkdir -p /var/tmp/bootc-out
@@ -113,7 +116,7 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y podman qemu-system-x86 python3-pillow
       - name: Build bootc image
-        run: sudo podman build -t localhost/sidos:ci image/
+        run: sudo podman build -f image/Containerfile -t localhost/sidos:ci .
       - name: Build bootable qcow2 (bootc-image-builder)
         run: |
           sudo mkdir -p /var/tmp/bootc-out

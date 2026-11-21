@@ -1,14 +1,12 @@
-# SiD OS bootc image — Phase 2 skeleton. NOT a working OS yet.
-# D1 (2026-11): Fedora Atomic (bootc) base confirmed.
-# packages.txt is the intended package set; CI builds this per PR.
-# Plasma/power/codec content is best-effort until first successful CI build.
-
+# SiD OS bootc image — Phase 2, with SiD identity + experience switcher
+# Base: Fedora Atomic (bootc). Build from the REPOSITORY ROOT:
+#   podman build -f image/Containerfile -t localhost/sidos:ci .
 ARG BASE=quay.io/fedora/fedora-bootc:latest
 FROM ${BASE}
 
 LABEL org.opencontainers.image.title="sidos"
 LABEL org.opencontainers.image.description="SiD OS — laptop-first Linux distribution (bootc)"
-LABEL org.opencontainers.image.source="https://github.com/sidos/sidos"
+LABEL org.opencontainers.image.source="https://github.com/sidhere24/sidos"
 LABEL org.opencontainers.image.licenses="MIT"
 
 # RPM Fusion (P7) — codec repos installed from upstream URLs, not Fedora repos
@@ -16,22 +14,31 @@ RUN dnf -y install \
     "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
     "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 
-# Install phase-2 packages (comments and blanks stripped).
-COPY packages.txt /tmp/packages.txt
+# Install packages (comments and blanks stripped).
+COPY image/packages.txt /tmp/packages.txt
 RUN set -eu; \
     PKGS=$(sed 's/#.*//' /tmp/packages.txt | tr -s ' \t' '\n' | grep -v '^$' || true); \
     dnf -y update; \
-    dnf -y install ${PKGS} sddm; \
+    dnf -y install ${PKGS} sddm papirus-icon-theme kvantum google-noto-sans-fonts jetbrains-mono-fonts; \
     dnf clean all; \
     rm -rf /tmp/packages.txt
 
-# graphical.target enables SDDM display manager; plasma-login-manager is pulled
-# in by kde-desktop-environment but sddm is the explicit service file.
+# SiD OS identity: original CC0 wallpapers + logo, and the profile switcher (P6).
+COPY brand/wallpapers/classic.png /usr/share/backgrounds/sidos/classic.png
+COPY brand/wallpapers/studio.png /usr/share/backgrounds/sidos/studio.png
+COPY brand/wallpapers/flow.png /usr/share/backgrounds/sidos/flow.png
+COPY brand/logo.svg /usr/share/pixmaps/sidos.svg
+COPY packaging/experience-profiles/ /usr/share/laptopos/experience-profiles/
+RUN set -eu; \
+    install -D -m 0755 /usr/share/laptopos/experience-profiles/laptop-experiences /usr/bin/laptop-experiences; \
+    install -D -m 0644 /usr/share/laptopos/experience-profiles/laptop-experiences-firstboot.desktop \
+      /etc/xdg/autostart/laptop-experiences-firstboot.desktop
+
+# One blessed app source: Flathub pre-registered, zero upsell content (P5/P4).
+RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --system || true
+
+# Graphical login (F45 KDE ships plasma-login-manager; sddm is also present).
 RUN systemctl set-default graphical.target
-
-
-# Power stack: power-profiles-daemon is installed via packages.txt;
-# TLP evaluation lands in Phase 3 benchmarks (P1).
 
 # bootc sanity check — images must pass this to build (P3).
 RUN bootc container lint

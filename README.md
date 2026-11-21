@@ -6,7 +6,9 @@ An open-source Linux distribution designed **laptop-first**: instant sleep/resum
 best-in-class battery life, atomic updates with automatic rollback, and a polished,
 ad-free, telemetry-free experience — free, and friendly to contributors.
 
-- Status: pre-alpha, Phase 2 complete (CI smoke-tests boot+login, sddm in Containerfile, calamares in manifest, install-media on main push); Phase 3 in progress (power stack tuning on Framework 13 + ThinkPad; Phase 4 pending desktop polish pass HIG_gestures_snap).
+- Status: pre-alpha. CI builds + lints + publishes the bootc image; a real VM smoke
+  test boots it to the Plasma first-run screen. Full session polish and the
+  installable ISO are still in progress — see [`docs/validation-log.md`](docs/validation-log.md).
 - License (tooling/docs): MIT/CC-BY-SA — see `LICENSE`, `docs/LICENSE.md`
 - Docs: [`design-principles.md`](docs/design-principles.md) · [`experience-profiles.md`](docs/experience-profiles.md) · [`profile-classic.md`](docs/profile-classic.md) · [`profile-studio.md`](docs/profile-studio.md) · [`profile-flow.md`](docs/profile-flow.md) · [`assets.md`](docs/assets.md) · [`customization.md`](docs/customization.md) · [`download.md`](docs/download.md) · [`onboarding.md`](docs/onboarding.md) · [`faq.md`](docs/faq.md) · [`rfcs/0000-rfc-template.md`](docs/rfcs/0000-rfc-template.md) · [`naming-and-trademarks.md`](docs/naming-and-trademarks.md)
 - Strategy: **default to the experience Windows users know, deliver the values Mac and
@@ -14,9 +16,9 @@ ad-free, telemetry-free experience — free, and friendly to contributors.
 
 ## A taste of SiD OS
 
-Three one-button **Experience Profiles** on one desktop (Plasma 6). Switch anytime in
-Settings → Experience or with `laptop-experiences switch <name>`. These are concept
-renders pending the first VM screenshots — the visual direction, not the final pixels.
+Three One-button **Experience Profiles** are designed; the image now ships the
+`laptop-experiences` switcher (wallpaper/icons/fonts/color) — full taskbar/dock/tiling
+layouts remain concept art for now. These renders show the visual direction:
 
 | Classic (default, Windows-refugee familiar) | Studio (calm, Mac-refugee) | Flow (tiling, Linux-native) |
 |---|---|---|
@@ -66,8 +68,9 @@ Full guide: [`docs/download.md`](docs/download.md)
 
 - **Option A** — `sudo bootc switch --apply ghcr.io/sidhere24/sidos:latest` from any
   Fedora Atomic system. Works today.
-- **Option B** — test the qcow2 from Releases in a VM (QEMU/VirtualBox/virt-manager).
-- **Option C** — installable ISO arrives when the session is wired; watch Releases.
+- **Option B** — ask in Discussions for the 5.6 GB qcow2 (over GitHub's 2 GB Release
+  asset limit, so it isn't hosted here), or build your own with `podman build -f image/Containerfile .`
+- **Option C** — installable ISO needs a Fedora host to build; see `docs/download.md`
 
 ## Community
 

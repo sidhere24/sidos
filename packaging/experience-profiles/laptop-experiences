@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# SiD OS Experience Profile switcher — changes the whole desktop paradigm in one command.
+# Usage: laptop-experiences switch <classic|studio|flow> | list | current
+set -euo pipefail
+
+PROFILE_DIR=${SID_PROFILE_DIR:-/usr/share/laptopos/experience-profiles}
+STATE_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/laptop-experiences
+STATE_FILE=$STATE_DIR/profile
+
+die() { printf 'laptop-experiences: %s\n' "$*" >&2; exit 1; }
+info() { printf 'laptop-experiences: %s\n' "$*"; }
+
+cmd_list() {
+  info "available profiles:"
+  for f in "$PROFILE_DIR"/*.conf; do
+    [ -f "$f" ] || continue
+    name=$(basename "$f" .conf)
+    desc=$(sed -n 's/^description="\(.*\)"/\1/p' "$f")
+    printf '  %-8s %s\n' "$name" "$desc"
+  done
+}
+
+cmd_current() {
+  if [ -f "$STATE_FILE" ]; then
+    info "current profile: $(cat "$STATE_FILE")"
+  else
+    info "current profile: (default; no override written yet)"
+  fi
+}
+
+apply_profile() {
+  local name=$1
+  local cfg=$PROFILE_DIR/$name.conf
+  [ -f "$cfg" ] || die "unknown profile: $name (try: laptop-experiences list)"
+  # shellcheck disable=SC1090
+  . "$cfg"
+
+  mkdir -p "$STATE_DIR"
+
+  if command -v plasma-apply-wallpaperimage >/dev/null 2>&1 && [ -f "$wallpaper" ]; then
+    plasma-apply-wallpaperimage "$wallpaper" >/dev/null 2>&1 || true
+  fi
+  if command -v kwriteconfig6 >/dev/null 2>&1; then
+    kwriteconfig6 --file kdeglobals --group Icons --key Theme "$icon_theme" >/dev/null 2>&1 || true
+    kwriteconfig6 --file kdeglobals --group General --key cursorTheme "$cursor_theme" >/dev/null 2>&1 || true
+    kwriteconfig6 --file kdeglobals --group General --key font "$font" >/dev/null 2>&1 || true
+  fi
+  if command -v plasma-apply-colorscheme >/dev/null 2>&1; then
+    plasma-apply-colorscheme "$color_scheme" >/dev/null 2>&1 || true
+  fi
+  if command -v kvantummanager >/dev/null 2>&1; then
+    kvantummanager --set "$kvantum_theme" >/dev/null 2>&1 || true
+  fi
+
+  printf '%s\n' "$name" > "$STATE_FILE"
+  info "switched to $name"
+  info "changes are local to this user; no logout required for wallpaper/icons/font"
+  info "full layout (dock vs taskbar vs tiling) arrives with the next profile implementation pass"
+}
+
+# --firstboot: apply Classic exactly once for a brand-new user (called via XDG autostart)
+if [ "${1:-}" = "--firstboot" ]; then
+  [ -f "$STATE_FILE" ] || {
+    apply_profile classic
+    printf '%s\n' classic > "$STATE_FILE"
+  }
+  exit 0
+fi
+
+case "${1:-}" in
+  switch) [ $# -eq 2 ] || die "usage: laptop-experiences switch <classic|studio|flow>"; apply_profile "$2" ;;
+  list)   cmd_list ;;
+  current) cmd_current ;;
+  *)      die "usage: laptop-experiences {switch <name>|list|current}" ;;
+esac

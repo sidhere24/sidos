@@ -392,6 +392,7 @@ Single source of truth for the big calls. Change = RFC + principle check.
 | D18 | **Image architecture** | **bootc image, `quay.io/fedora/fedora-bootc` base, GitHub Actions build + QEMU smoke test** | D1; P3 rollback-safe updates; Phase 1 |
 | D19 | **Community forum** | **GitHub Discussions on the repo** (free, no hosting burden for a budget-tight project) | User asked for forum-like discussion without own domain; Discussions ships free with public repos; Matrix later if growth demands it |
 | D20 | **Release cadence** | **Rolling — fix forward** (atomic image, patch-and-publish on bugs/features; no fixed release train) | Matches bootc + user intent; "found a bug → fixed → ships in next image" |
+| D21 | **Phase 2 identity pass (2026-11-21)** | Bundle SiD wallpapers/logo + Papirus/Kvantum/fonts in the image; ship `laptop-experiences` CLI with 3 profile configs and first-boot Classic autostart; pre-register Flathub | Closes the "stock Fedora" gap; partial implementation of D3/P6 — layout switching still pending; validated by VM screenshot |
 
 *Everything in this table has a home elsewhere in the docs — this is the index, not the detail.*
 

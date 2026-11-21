@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=SiD OS first-boot appearance
+Comment=Apply the Classic experience to a brand-new user once
+Exec=/usr/bin/laptop-experiences --firstboot
+Terminal=false
+NoDisplay=true
+X-GNOME-Autostart-enabled=true

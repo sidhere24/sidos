@@ -14,6 +14,13 @@ a phone's theme, but the *entire* interaction paradigm flips with it.
 
 This is not three DEs. It is **one Plasma 6 base, three skins-with-behavior**.
 
+> Status: **Phase 2, partially implemented**. The image ships the `laptop-experiences`
+> CLI (`switch <classic|studio|flow>`, `list`, `current`) plus bundled CC0 wallpapers,
+> Papirus icons, Kvantum, Noto/JetBrains fonts, Flathub and a first-boot Classic
+> autostart. The CLI applies wallpaper/icons/cursor/font/color scheme; **full panel
+> layout (taskbar vs dock vs tiling) is still concept-only** and needs the Plasma
+> layout machinery (D3). Do not advertise one-click *full* paradigm switching yet.
+
 ## 2. The three profiles
 
 **Default profile: Classic (Windows-like)** — primary audience is Windows refugees;

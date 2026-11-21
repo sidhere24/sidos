@@ -3,6 +3,19 @@
 > Status: draft v0.1 · For maintainers with a local x86_64 machine
 > Automated via `scripts/vm_gui_test.py`
 
+## Building locally (verified on Windows + WSL Ubuntu, free)
+```
+# after installing WSL Ubuntu + podman inside it:
+cp -r <repo> ~/sidos && cd ~/sidos
+sudo podman build -f image/Containerfile -t localhost/sidos:ci .
+sudo podman run --rm --privileged -v /var/tmp/out:/output \
+  -v /var/lib/containers/storage:/var/lib/containers/storage \
+  quay.io/centos-bootc/bootc-image-builder:latest build --type qcow2 --rootfs btrfs localhost/sidos:ci
+```
+NOTE: the ISO build needs a Fedora host; F45 moved repo configs to `/usr` and the
+CentOS-based builder can't find them. GitHub hosted runners cannot run the builder
+either (mount permission denied) — those CI jobs are intentionally disabled.
+
 ## What CI already guarantees
 - bootc image builds (`bootc container lint` passes)
 - Required docs present; trademark scan of shippable trees
