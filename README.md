@@ -46,7 +46,8 @@ or user control.
 ```
 brand/                logo (SVG) + original CC0 wallpapers + profile concept renders
 docs/                 design principles, experience profiles, profile specs, naming policy
-image/                bootc image skeleton + Phase 2 package manifest
+image/                bootc image build (Containerfile + package manifest)
+packaging/            shipped profile configs + laptop-experiences CLI
 scripts/              repo gates (trademark scan, etc.)
 .github/              CI, issue/PR templates
 ```

@@ -49,6 +49,7 @@ SiD OS follows the Linux community norm (see `docs/design-principles.md` §2.8):
    (e.g. `power: enable 80% charge cap option in Quick Settings`).
 4. Tests before behavior: at minimum, extend CI smoke checks; for system changes,
    describe manual verification on a reference laptop (Framework 13 / 2017 ThinkPad).
+   Changes under `packaging/` must pass `bash -n` and the trademark scan.
 5. Sign off every commit (DCO).
 
 ## Community
