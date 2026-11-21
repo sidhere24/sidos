@@ -49,6 +49,13 @@ A: Firefox is the default (independent engine, no upsells, best privacy posture)
 Chromium is preinstalled for anything that breaks on Firefox. Brave and other
 Chromium forks are one click away in the store.
 
+**Q: Can I change the look?**
+A: Yes — full Linux customization freedom (themes, icons, cursors, keybinds): see
+`docs/customization.md`. A one-command starter is shipped:
+`laptop-experiences switch classic|studio|flow` — it swaps wallpaper, icons, cursor,
+font and color scheme instantly. Full taskbar/dock/tiling layout switching is still
+in progress.
+
 **Q: Where is the community forum?**
 A: GitHub Discussions on the project repo — free, searchable, always available,
 no separate account beyond GitHub. (Matrix/Discord may come later if growth demands.)
