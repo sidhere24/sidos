@@ -29,6 +29,16 @@ Full specs: [`profile-classic.md`](docs/profile-classic.md) ·
 [`profile-studio.md`](docs/profile-studio.md) ·
 [`profile-flow.md`](docs/profile-flow.md)
 
+### Proof it boots (real screenshot, 2026-11-21)
+
+![SiD OS booting to Plasma first-run screen](brand/screenshots/real-boot.png)
+
+Actual VM boot of the published bootc image (WHPX/q35, `laptop-experiences` included).
+The first login screen still says "Fedora Linux" — that's the upstream base, and
+Personalization is the next pass: the SiD wallpapers/icons/fonts are shipped and
+apply after account creation via the first-boot hook and `laptop-experiences`.
+See [`docs/validation-log.md`](docs/validation-log.md).
+
 ## What it is
 
 A Linux distribution — not a kernel and not a desktop widget collection. The goal is

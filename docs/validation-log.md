@@ -15,7 +15,20 @@
   - WHPX accel works; writes are emulated slower than real hardware
 - Status: **boot smoke test — PASS**. Session UX, updates/rollback, and battery behavior not yet tested.
 
+## 2026-11-21 — branded image (Phase 2 identity pass)
+- Image `localhost/sidos:ci` @ `8f0733cf22df`: SiD wallpapers/logo, Papirus/Kvantum,
+  Noto/JetBrains fonts, Flathub, `laptop-experiences` CLI and first-boot Classic
+  autostart. Verified inside the image (configs/quoting/trademark scan all clean).
+- CI green (docs gates + profile script syntax + image build + ghcr.io publish).
+- qcow2 boot + screenshot: **PASS** — branded qcow2 booted to Plasma first-run screen
+  (WHPX/q35); real screenshot committed at `brand/screenshots/real-boot.png`.
+  Serial log ends at a clean `fedora login:` (no panic), lint passed with 4 harmless warnings.
+- Known gap: the first-run screen still shows "Fedora Linux" branding; SiD assets are
+  installed and apply after account creation (first-boot hook + CLI). Full boot branding
+  needs OOBE customization later.
+- Known lint warning: flatpak repo metadata lives in /var; harmless, non-fatal.
+
 ## Pending
-- ISO build (`--type iso`) — first attempt failed with transient `NoReposError` (depsolve mirror hiccup); retry in progress
+- ISO build needs a Fedora host (F45 repo relocation); see `docs/download.md`.
 - Re-run VM test with brand/theme packages once the profile work lands
 - Hardware pass (Framework 13 / ThinkPad) — needs physical laptop
