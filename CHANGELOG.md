@@ -3,7 +3,11 @@
 All notable changes to SiD OS. Format: keep a human-readable entry per release;
 pre-alpha builds are identified by the commit SHA in ghcr.io tags.
 
-## Unreleased (pre-alpha, Phase 2 identity pass)
+## 2026-11-23
+- Built a real installable ISO (6.4 GB) using Fedora 45 WSL + image-builder's
+  `bootc-installer`; documented the helper image and build recipe. Not published to
+  Releases due to GitHub's 2 GB asset limit.
+- Verified image branding + switcher inside the published image; real boot screenshot added.
 - Added SiD OS identity to the bootc image: original CC0 wallpapers (Classic/Studio/Flow),
   SVG logo, Papirus icons, Kvantum, Noto Sans + JetBrains Mono, Flathub pre-registered.
 - Added `laptop-experiences` CLI with `switch`, `list`, `current` and a first-boot

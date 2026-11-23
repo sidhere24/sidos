@@ -81,7 +81,8 @@ Full guide: [`docs/download.md`](docs/download.md)
   Fedora Atomic system. Works today.
 - **Option B** — ask in Discussions for the 5.6 GB qcow2 (over GitHub's 2 GB Release
   asset limit, so it isn't hosted here), or build your own with `podman build -f image/Containerfile .`
-- **Option C** — installable ISO needs a Fedora host to build; see `docs/download.md`
+- **Option C** — a 6.4 GB bootc-installer ISO built and verified locally; see
+  `docs/download.md` for how to build/flash it (not on Releases — too large)
 
 ## Community
 

@@ -28,7 +28,16 @@
   needs OOBE customization later.
 - Known lint warning: flatpak repo metadata lives in /var; harmless, non-fatal.
 
+## 2026-11-23 — installable ISO (Fedora 45 WSL)
+- `image-builder` + `bootc-installer` produced a **6.4 GB installable ISO** from the
+  published ghcr.io image (manifest finished successfully; MD5 implanted).
+- Needed `image/Containerfile.iso` helper: copy EFI shim/grub into `/boot/efi`,
+  gcdx64 alias, `/var/mnt`, and installer tooling (anaconda, mako, lorax, dracut deps).
+- ISO copied to the user's Windows Downloads folder; not published to Releases
+  (6.4 GB > GitHub's 2 GB asset cap). Build recipe documented in `docs/download.md`.
+- Fedora WSL is now the supported local build environment; old Ubuntu WSL removed.
+
 ## Pending
-- ISO build needs a Fedora host (F45 repo relocation); see `docs/download.md`.
+- Verify the ISO actually installs on hardware/VM (only the build is verified).
 - Re-run VM test with brand/theme packages once the profile work lands
 - Hardware pass (Framework 13 / ThinkPad) — needs physical laptop

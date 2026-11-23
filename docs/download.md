@@ -33,15 +33,28 @@ Your `/home` and data are kept. Rollback is built in: hold Shift at the GRUB men
    ```
 3. Boot → GRUB → Plasma login screen → poke around
 
-## Option C — Installable ISO (blocked, pending one Fedora host)
-The ISO build is blocked on this machine: F45 moved RPM repo configs to `/usr`
-(bootc relocatable repos), so the CentOS-based image-builder finds no repositories
-for the Anaconda installer. Two working paths forward:
-- A Fedora host once (any spare Fedora machine, or a Fedora container in WSL):
-  `dnf install image-builder`, then
-  `image-builder build --bootc-ref localhost/sidos:ci generic-iso`
-- The bootc-installer ISO flow per Fedora's official ISO generation guide
-Until then, Option A/B are the only download paths.
+## Option C — Installable ISO (verified working 2026-11-23)
+A bootable bootc-installer ISO was built successfully in Fedora 45 WSL (6.4 GB).
+It is **not hosted on GitHub Releases** — 6.4 GB exceeds the 2 GB per-asset limit —
+so it must be built locally or via a self-hosted runner.
+
+Verified build (Fedora 45 WSL):
+```
+sudo dnf5 install podman image-builder python3-mako
+podman pull ghcr.io/sidhere24/sidos:latest
+# build the helper image from image/Containerfile.iso (adds EFI files + installer tools):
+podman build -f image/Containerfile.iso -t localhost/sidos-iso:ci image/
+cd iso-out && image-builder build \
+  --bootc-ref localhost/sidos-iso:ci \
+  --bootc-installer-payload-ref ghcr.io/sidhere24/sidos:latest \
+  --bootc-default-fs ext4 bootc-installer
+```
+Output: `bootc-fedora-45-bootc-installer-x86_64/bootiso/install.iso`.
+
+Flash it to a **16 GB or larger** USB stick with balenaEtcher, or Rufus in **DD image
+mode** (Windows; an ISO >4 GB cannot be written in ISO-image mode to a FAT32 stick).
+Boot from USB → Anaconda → install; the installed system is the current ghcr.io
+SiD OS image, with atomic rollback.
 
 ## Verification after install
 ```bash
